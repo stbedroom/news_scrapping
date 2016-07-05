@@ -1,14 +1,29 @@
+# -*- coding: utf-8 -*-
+"""
+Spyder Editor
+
+This is a temporary script file.
+"""
+# 매일경제 뉴스 기사 검색 후 url 보여주기 #
+# 가능하면 기사 원문까지도! # 
+
+""" 1. 허핑턴 포스트 클리핑 """
+
+# 스크래핑을 위한 requests, lxml, cssselect, html 모듈 설치
 import requests
 from lxml import html
 from lxml import cssselect
 
+# URL 저장 및 불러오기
 URL = "http://www.huffingtonpost.kr/"
 resp = requests.get(URL)
 
+# URL을 담은 resp 에 대한 반응 체크 : 200이면 정상
 resp
 
 resp.status_code
 
+# 허핑턴 포스트 첫페이지 전체 html 출력
 print (resp.text)
 
 type(resp.text)
