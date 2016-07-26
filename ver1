@@ -143,7 +143,8 @@ def get_reporter(article_url):
 for i, a in enumerate(articles[6:]):
     name = get_reporter(a.get('href'))
     print ("{} - <<{}>> by {}".format (i, a.text_content(), name))
-    
+
+# 클리앙 게시판 스크래핑
 resp = requests.get('http://clien.net/cs2/bbs/board.php?bo_table=park')
 resp.encoding = 'utf-8'
 resp
@@ -221,7 +222,7 @@ len(elem.cssselect('div.paperlist ul li'))
 articles = elem.cssselect('div.paperlist ul li')
 print (articles)
 
-
+# 매경 신문 스크래핑
 import requests
 from lxml import html
 from lxml import cssselect
@@ -248,67 +249,8 @@ while page < 8:
     except :
         break
         
-from selenium import webdriver
-import time
-from selenum.webdriver.common.keys import Keys
 
-# 파폭 웹 드라이버 생성
-driver = webdriver.Firefox()
-
-# 주어진 웹페이지 로딩
-driver.get("http://google.co.kr")
-
-# 해당 사이트 제목이 google 인지 확인
-assert "Google" in driver.title
-
-# element 이름으로 검색창이름 확인, 파폭에서 F12
-elem1 = driver.find_element_by_name("sbibod")
-
-# 검색어 입력
-elem1.send_keys("sbibod")
-
-# 검색어 전송
-elem1.submit()
-
-# 검색결과 페이지에서 특정 문자열 포함하는 링크 텍스트 찾기
-elem2 = driver.find_element_by_partial_link_text("title")
-
-# 해당 링크 클릭
-elem2.click()
-
-# 검색 결과창 종료
-driver.close()
-""" <div class="sbibod " id="sfdiv">   
-  <div style="height: 38px;" class="gstl_0 sbib_a"><div dir="ltr" 
-  style="line-height: 38px;" id="gs_st0" class="gsst_b sbib_c"><a aria-label=
-  "입력 도구" href="javascript:void(0)" class="gsst_a"><span id="gs_ok0" class=
-  "gsok_a gsst_e"><img tia_property="web" tia_disable_swap="true" tia_field_name=
-  "q" src="//www.gstatic.com/inputtools/images/tia.png"></span></a></div><div 
-  dir="ltr" id="sb_ifc0" class="sbib_b"><div style="position: relative;" id=
-  "gs_lc0"><input spellcheck="false" dir="ltr" style="border: medium none; 
-  padding: 0px; margin: 0px; height: auto; width: 100%; background: transparent 
-  url(&quot;data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAA
-  ABAAEAAAICRAEAOw%3D%3D&quot;) repeat scroll 0% 0%; position: absolute; z-
-  index: 6; left: 0px; outline: medium none;" aria-autocomplete="both" r
-  ole="combobox" aria-haspopup="false" class="gsfi" id="lst-ib" maxlength="
-  2048" name="q" autocomplete="off" title="검색" value="추경 신속히 편성해 브
-  렉시트 파고 극복" aria-label="검색" type="text"><div id="gs_sc0" style
-  ="background: transparent none repeat scroll 0% 0%; color: transpar
-  ent; padding: 0px; position: absolute; z-index: 2; white-space: pr
-  e; visibility: hidden;" class="gsfi"></div><input dir="ltr" id="gs_
-  taif0" style="border: medium none; padding: 0px; margin: 0px; heig
-  ht: auto; width: 100%; position: absolute; z-index: 1; background-c
-  olor: transparent; color: silver; left: 0px; visibility: hidden;" aria
-  -hidden="true" autocomplete="off" disabled="" class="gsfi"><input dir=
-  "ltr" id="gs_htif0" style="border: medium none; padding: 0px; margin: 0
-  px; height: auto; width: 100%; position: absolute; z-index: 1; backgro
-  und-color: transparent; color: silver; transition: all 0.218s ease 0
-  s; opacity: 0; text-align: left; left: 0px;" aria-hidden="true" auto
-  complete="off" disabled="" class="gsfi"></div></div></div>  </div>
-"""
-
-        
-
+## 다시 클리앙
     
 """
 URL = 'http://clien.net/cs2/bbs/board.php'
@@ -330,37 +272,3 @@ def clien(page):
         hit = a.cssselect('td')[4].text_content()
         print(aid, title, link, hit)
 """    
-
-from selenium import webdriver
-import time
-from selenium.webdriver.common.keys import Keys
-time.sleep(1)
-
-# 파폭 웹 드라이버 생성
-driver = webdriver.Firefox()
-
-# 주어진 웹페이지 로딩
-driver.get("http://naver.com")
-
-# 해당 사이트 제목이 google 인지 확인
-assert "NAVER" in driver.title
-
-# element 이름으로 검색창이름 확인, 파폭에서 F12
-# elem1 = driver.find_element_by_id("query")
-elem1 = driver.find_element_by_id("query")
-
-
-# 검색어 입력
-elem1.send_keys("추경 신속히 편성해 브렉시트 파고 극복")
-
-# 검색어 전송
-elem1.submit()
-
-# 검색결과 페이지에서 특정 문자열 포함하는 링크 텍스트 찾기
-elem2 = driver.find_element_by_partial_link_text("추경 신속히 편성해 브렉시트 파고 극복")
-
-# 해당 링크 클릭
-elem2.click()
-
-# 검색 결과창 종료
-driver.close()
