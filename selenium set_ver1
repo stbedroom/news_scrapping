@@ -1,0 +1,31 @@
+
+ from selenium import webdriver
+ import time
+ from selenum.webdriver.common.keys import Keys
+ 
+ # 파폭 웹 드라이버 생성
+ driver = webdriver.Firefox()
+ 
+ # 주어진 웹페이지 로딩
+ driver.get("http://google.co.kr")
+ 
+ # 해당 사이트 제목이 google 인지 확인
+ assert "Google" in driver.title
+ 
+ # element 이름으로 검색창이름 확인, 파폭에서 F12
+ elem1 = driver.find_element_by_name("sbibod")
+ 
+ # 검색어 입력
+ elem1.send_keys("sbibod")
+ 
+ # 검색어 전송
+ elem1.submit()
+ 
+ # 검색결과 페이지에서 특정 문자열 포함하는 링크 텍스트 찾기
+ elem2 = driver.find_element_by_partial_link_text("title")
+ 
+ # 해당 링크 클릭
+ elem2.click()
+ 
+ # 검색 결과창 종료
+ driver.close()
